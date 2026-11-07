@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PhotoBook Studio — Custom 3D Photo Book</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}
+</script>
+</head>
+<body>
+<header><a class="brand" href="#"><span class="brandmark">P</span><span><b>PhotoBook Studio</b><small>DESIGN YOUR OWN · PRINT YOUR MEMORIES</small></span></a><div class="header-actions"><button id="reset">Reset design</button><button class="primary" id="download">Download 3MF ↗</button></div></header>
+<main>
+<section class="stage">
+  <div class="stage-top"><div><span class="eyebrow">LIVE CONFIGURATOR</span><h1>Your photos. Your book.</h1><p>Change the design and watch the model update.</p></div><span class="live"><i></i> LIVE PREVIEW</span></div>
+  <div id="viewer"><canvas id="scene"></canvas><div class="viewhint">Drag to rotate · Scroll to zoom</div><div class="viewbuttons"><button id="open">Open book</button><button id="explode">Explode parts</button><button id="home">Reset view</button></div></div>
+  <div class="stage-foot"><span id="dimensions">66 × 98 mm cover</span><span>Preview is illustrative; exported source is parametric CAD.</span></div>
+</section>
+<aside>
+ <div class="panel-heading"><span class="eyebrow">MAKE IT YOURS</span><h2>Book settings</h2></div>
+ <section class="group"><h3>01 <span>Photo format</span></h3><label class="field">Photo size<select id="format"><option value="instax">Instax Mini · 54 × 86 mm</option><option value="square">Instax Square · 72 × 86 mm</option><option value="wide">Instax Wide · 108 × 86 mm</option><option value="custom">Custom size</option></select></label><div class="custom hidden" id="custom"><label class="field">Width (mm)<input id="photoW" type="number" min="25" max="140" value="54"></label><label class="field">Height (mm)<input id="photoH" type="number" min="30" max="180" value="86"></label></div></section>
+ <section class="group"><h3>02 <span>Book layout</span></h3><label class="field">Number of photo pages <output id="pageCount">4</output><input id="pages" type="range" min="2" max="20" value="4"></label><label class="field">Opening direction<select id="direction"><option value="vertical">Side opening · like a book</option><option value="horizontal">Top opening · like a notepad</option></select></label></section>
+ <section class="group"><h3>03 <span>Colours</span></h3><label class="field">Cover colour<input id="coverColor" type="color" value="#e99ac1"></label><label class="field">Page colour<input id="pageColor" type="color" value="#f2f0eb"></label><p class="note">Choose matching or contrasting PLA colours. Assign filament colours in Bambu Studio after importing the parts.</p></section>
+ <section class="group"><h3>04 <span>Cover details</span></h3><label class="field">Cover title<input id="title" maxlength="24" placeholder="Our memories"></label><label class="field">Title colour<input id="titleColor" type="color" value="#29252a"></label><label class="check"><input id="photoCover" type="checkbox"> Add a photo window to the cover</label></section>
+ <section class="group"><h3>05 <span>Print tolerances</span></h3><label class="field">Photo clearance <output id="clearanceOut">0.5 mm</output><input id="clearance" type="range" min="0.2" max="1.2" step="0.1" value="0.5"></label><label class="field">Hinge pin clearance <output id="hingeOut">0.3 mm</output><input id="hinge" type="range" min="0.2" max="0.8" step="0.1" value="0.3"></label><p class="note">Clearances depend on printer calibration and photo stock. Test a single page and hinge before printing the full set.</p></section>
+ <section class="export"><div><b>Ready to generate?</b><p>Download a 3MF project with separate coloured model parts.</p></div><button class="primary wide" id="download2">Download 3MF file</button><button class="secondary wide" id="instructions">Printing & assembly notes</button><p id="status" role="status"></p></section>
+</aside>
+</main>
+<div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="close">×</button><h2>Print & assembly notes</h2><ol><li>Open the downloaded <b>.3mf</b> directly in Bambu Studio.</li><li>Check that all separate parts are inside the build plate.</li><li>Assign your cover, page and pin filaments in Bambu Studio.</li><li>Slice and inspect every part before printing.</li><li>Slice and inspect every part before printing. Start with one page and the hinge test.</li></ol><p>This is an original engineering prototype. The physical hinge, photo retention and tolerances still require a real print test. The exported 3MF is standards-based, but has not been validated in Bambu Studio.</p></div></div>
+<script type="module" src="app.js"></script>
+</body></html>
